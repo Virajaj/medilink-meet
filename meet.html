@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Medilink Call</title>
+    <script src="https://meet.jit.si/external_api.js"></script>
+
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: black;
+      }
+      #jitsi {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="jitsi"></div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const room = params.get("room");
+
+      const api = new JitsiMeetExternalAPI("meet.jit.si", {
+        roomName: room,
+        parentNode: document.querySelector("#jitsi"),
+        configOverwrite: {
+          prejoinPageEnabled: false
+        },
+        interfaceConfigOverwrite: {
+          SHOW_JITSI_WATERMARK: false,
+          SHOW_WATERMARK_FOR_GUESTS: false
+        }
+      });
+    </script>
+  </body>
+</html>
